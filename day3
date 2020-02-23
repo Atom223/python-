@@ -1,0 +1,458 @@
+#切片：就是根据一个下标范围获取一部分数据，切片经常结合字符串，元组，列表使用
+#下标：根据下标只能获取一个数据，想要获取一部分数据使用切片
+# my_str = "abcedf"
+#
+# value1 = my_str[0]
+# value2 = my_str[1]
+# value3 = my_str[2]
+#
+# result = value1 + value2 + value3
+# print(result)
+
+#以上功能可以通过切片完成
+#切片得语法格式：
+#变量[开始下标：结束下标：步长]
+#注意点：不包含结束下标，也就是说结束下标这个值是取不到得
+
+# my_str = "abcedf"
+# #使用切片获取字符串中得一部分数据
+# result = my_str[0:2:1]
+# print(result)
+#
+# #步长不指定，默认是1
+# result = my_str[0:3]
+# print(result)
+#
+# #获取字符串中的前三个数据的简写方式
+# #如果步长是正数，现在步长没有指定（默认是1），开始下标不指定默认值0
+# result = my_str[:3]
+# print(result)
+#
+# #获取字符串中的后三个数据
+# result = my_str[3:6]
+# print(result)
+#
+# #获取字符串后三个简写
+# result = my_str[3:]
+# print(result)
+#
+# #使用负数下标的方式获取后三个数据
+# result = my_str[-3:]
+# print(result)
+#
+# #使用切片获取整个字符串
+# result = my_str[0:6]
+# print(result)
+#
+# #使用切片获取整个字符串的简写方式
+# result = my_str[:]
+# print(result)
+# #指定步长为2
+# result = my_str[::2]
+# print(result)
+#
+# #需求：倒着取值
+# my_str = "abcedf"
+# #从倒数第一个获取到倒数第三个数据
+# result = my_str[-1:-4:-1]
+# print(result)
+#
+# #如果步长为负数，结束下标不指定，表示能够获取到第一个数据
+# result = my_str[-1::-1]
+# print(result)
+#
+# #从倒数第一个数据获取到正数第一个数据的简写方式
+# result = my_str[::-1]
+# print(result)
+
+#总结：步长为正，从左往右取值；步长为负，从右往左取值
+
+#字符串的常见操作
+#1.find:根据指定字符串取对应的下标，如果找不到对应的数据返回-1，这里的-1表示没找到数据
+#2.index:和find类似，也是获取指定字符串的下标，如果找不到对应的数据直接崩溃
+#3.count：统计指定字符串出现的次数
+#4.replace：替换字符串
+#5.split:根据指定数据分割字符串
+
+# my_str = "hello"
+# index = my_str.find("e")#找到输出1，找不到打印-1
+# print(index)
+#
+# index = my_str.find("x")
+# print(index)
+#
+# #新的用法，在指定范围里面查找数据下标
+# #1.要查找的数据
+# #2.开始下标
+# #3.结束下标（不包含）
+# index = my_str.find("i",0,3)
+# print(index)
+#
+# #index的使用
+# my_str = "world"
+# #根据指定数据获取对应的下标
+# index = my_str.index("d")
+# print(index)
+# #找不到就崩溃
+# # index = my_str.index("x")
+# # print(index)
+#
+# index = my_str.index("r",1,4)
+# print(index)
+#
+# #count
+# my_str = "hello"
+# #统计指定字符串出现的次数
+# result = my_str.count("l")
+# print("l出现的次数为：",result)
+#
+# #根据指定范围获取指定字符串出现的次数
+# result = my_str.count("l",0,3)
+# print(result)
+#
+# #replace 替换字符串的操作
+# my_str = "hello"
+#
+# #根据指定字符串进行替换
+# #1.要替换的字符串
+# #2.替换后的字符串
+# result = my_str.replace("l","x")
+# print(result)
+#
+# #1、要替换的字符串
+# #2.替换后的字符串
+# #3.替换次数，1表示替换一次，不指定该参数表示全部替换
+# result = my_str.replace("l","x",1)
+# print(result)
+#
+# #5 spit ===根据指定数据进行分割
+# my_str = "a,b,c"
+#
+# #返回的是一个列表，把分割后的数存放在列表里
+# result = my_str.split(",")
+# print(result)
+#
+# #1.指定分割的数据
+# #2.最大的分割次数
+# result = my_str.split(",",1)
+# print(result)
+#
+# #spit方法的扩展
+# #如果不指定参数表示按照空白字符（空格，\n,\t）进行分割
+# my_str = "a b\nc\td"
+#
+# result = my_str.split()
+# print(result)
+#
+# my_str = "http://www.baidu.com"
+# #staartswith:表示判断是否是以指定字符串开头
+# is_ok = my_str.startswith("http")
+# print(is_ok)
+#
+# #endswith:表示判断是否是以指定字符串结尾
+# is_ok = my_str.endswith(".cn")
+# print(is_ok)
+#
+# #strip:去重两边空白字符
+# my_str = "哈哈"
+# print(my_str)
+#
+# #result :去除空白字符后的数据
+# result = my_str.strip()
+# print(result)
+#
+# #lstrip去除左边空白字符串，rstrip去除右边空白字符串
+# result = my_str.lstrip()
+# print(result)
+#
+# #去除两边指定数据
+# my_str = "!hello"
+# #去除两边
+# result = my_str.strip("!")
+# print(result)
+#
+# #fdind :表示从右往左查找数据对应的下标
+# my_str = "hello"
+#
+# #find:默认从左往右查找数据对应下标
+# index = my_str.find("l")
+# print(index)
+#
+# #find默认从左往右查找数据对应下标
+# index = my_str.rfind("l")
+# print(index)
+#
+# #rfind默认从右往左查找数据对应下标
+# index = my_str.rfind("l")
+# print(index)
+#
+# file_name = "1.txt"
+# #partition，根据指定数据，把数据分割为三部分，返回元组
+# result = file_name.partition(".")
+# print(result)
+#
+# file_name = "1.txt.png"
+# #注意从右往左，和上面相反
+# result = file_name.rpartition(".")
+# print(result)
+#
+# #
+# file_name = "1.txt"
+# result = file_name.partition(".")
+# print(result)
+#
+# file_name = "1.txt.png"
+# result = file_name.rpartition(".")
+# print(result)
+#
+# #isdigit:判断字符串里面是否都是整型数字
+#
+# my_str = "80"
+# result = my_str.isdigit()
+# print(result)
+#
+# #join:根据指定数据对容器中的每一个数据进行拼接，返回一个**新的字符串
+# my_str = "abc"
+#
+# #根据下划线对字符串中的每一个数据进行拼接，返回一个新的字符串
+# result = "_".join(my_str)
+# print(result)
+#
+# #注意点：列表中的数据必须是字符串，因为返回的是字符串
+#
+# #扩展：join 结合列表使用
+# my_list = ['1','2']
+
+#列表：就是可以存储多个任意类型数据的容器，它是一个数据类型：list
+#列表是属于容器类型，可以存储多个数据，以后存储多个数据可以使用列表来完成，不需要定义多个变量存储每一个数据
+
+#列表的表现形式:[数据1，数据2，...]
+
+#定义人员列表
+# name_list = ["西施","貂蝉","王昭君","杨玉环"]
+#
+# #查看变量存储数据的类型
+# name_list_type = type(name_list)
+# print(name_list_type,name_list)
+#
+# #注意点；列表可以存储任意类型的数据
+# my_list = [1,3.14,'abc',True,range(3),[1,2]]
+#
+# print(my_str,type(my_list))
+#
+# #获取列表中的某一个数据，可以通过下标
+# result = my_list[0]
+# print(result)
+#
+# result = my_list[-1]
+# print(result)
+#
+# #定义空的列表
+# my_list = list()
+# print(my_list)
+#
+# #往列表中追加一个数据。append
+# my_list.append('A')
+# print(my_list)
+#
+# #往列表中追加一个数据，追加的数据放到列表的末尾
+# my_list.append("B")
+# print(my_list)
+#
+# #insert 根据指定下标插入对应的数据
+# my_list.insert(0,"c")
+# print(my_list)
+#
+# #extend: 表示扩展一组数据
+# name_list = ["宋江","林冲","鲁智深"]
+# my_list = ["杨雄","时迁"]
+#
+# #把小列表作为一个数据添加到大列表中
+# name_list.append(my_list)
+# print(name_list)
+#
+# #使用extend扩展一组数据，把小列表中的每一个数据添加到大列表中
+# name_list.extend(my_list)
+# print(name_list)
+#
+# name_list = ["及时雨宋江","豹子头林冲","鲁智深"]
+# print(name_list)
+# #需求：对列表中的某个数据进行修改
+#
+# name_list[2] = "花和尚鲁智深"
+# print(name_list)
+#
+# name_list = ["及时雨宋江","豹子头林冲","鲁智深"]
+# print(name_list)
+# #需求：对列表中某个数据进行修改
+# name_list[2] = "花和尚鲁智深"
+# print(name_list)
+#
+# name_list[-1] = "花和尚鲁智深"
+# print(name_list)
+#
+# #修改一部分列表
+# name_list[:2] = ["宋江","林冲"]
+# print(name_list)
+#
+# #利用切片获取一部分数据
+# result = name_list[1:]
+# print(result)
+
+# name_list = ["及时雨宋江","豹子头林冲","鲁智深"]
+# print(name_list)
+#列表中的数据删除
+
+# del name_list[1]
+# print(name_list)
+#
+# #根据切片删除多个数据
+# del name_list[-2:]
+# print(name_list)
+
+#通过pop默认删除倒数第一个数据
+# value = name_list.pop()
+# print(value,name_list)
+# #
+# # #pop可以根据指定下标删除指定数据，并把下标对应的数据返回
+# #
+# value = name_list.pop(0)
+# print("删除的数为：",value)
+# print("删除后列表中的数据为:",name_list)
+# #
+# print("===")
+
+#使用remove删除列表中的元素，且元素必须存在
+# name_list.remove("鲁智深")
+# #name_list.remove("a")
+# print(name_list)
+#
+# name_list = ["彭友","李亚伟","谢剑","李亚飞"]
+#
+# #根据指定数据获取在列表中的下标
+# # index = name_list.index("张飞")#找不到会报错
+# # print(index)
+#
+# index = name_list.index("谢剑")
+# print(index)
+#
+# index = name_list.count("关羽")
+# print(index)
+#
+# #列表嵌套：在一个列表里面再次存储一个列表
+# city_list = [["北京","沈阳"],["深圳","上海"]]
+#
+# #如何获取深圳的这个数据
+# south_list = city_list[1]
+# print(south_list)
+#
+# #获取城市的名字
+# city_name = south_list[0]
+# print(city_list)
+#
+# #一次性获取指定的数据
+# city_name = city_list[1][0]#第二个列表的第一个元素
+# print(city_name)
+#
+# #这里就是列表嵌套取值的操作
+# city_name = city_list[0][1]#第一个列表的第二个元素
+# print(city_name)
+
+#关卡一
+ret = int("100")
+# ret = str(100)
+print(ret)
+
+#切片获取字符
+a = "abcdef"
+result = a[2:5]
+print(result)
+#取c字符
+result = a[2:3]
+print(result)
+
+#侧字符的长度
+result = len("qwe")
+print(result)
+
+#名片管理器，记录名片
+# name = input("请输入姓名")
+# number = input("性别")
+# photo = input("请输入手机")
+#
+# print("姓名是%s" %name)
+# print("性别是%s" %number)
+# print("手机号是 %s" % photo)
+
+#列表和普通变量有什么区别
+# 列表是数据类型，普通变量是用来存储数据的
+# 可以把列表赋值给普通变量
+
+#怎样测量列表中元素的个数
+result = len(["zho","wwdaw","wdwadw"])
+print(result)
+
+a=[11,22,33]
+result = a[1]
+print(result)
+
+a.append(44)
+print(a)
+
+a.insert(3,44)
+print(a)
+
+#删除
+a.remove(33)
+print(a)
+
+a.pop(2)
+print(a)
+
+del a[2]
+print(a)
+
+#修改
+a[1] = 55
+print(a)
+
+#查找
+# result = a.index(22)
+# print(result) #上面删除会出现报错
+
+#分清楚每个函数的作业，以及哪些是需要赋值调用，
+# 哪些是直接可以调用的，哪些是需要切片的
+
+#使用for遍历列表的元素
+nums = [11,22,33,44,55]
+for nubi in nums:
+    print(nubi)
+
+#嵌套
+num_list = [["adw","adww"],["dwd","fwa"]]
+print(num_list)
+
+#用户名和密码核实校验程序
+name = input("请输入用户名")
+darress = input("请输入密码")
+rea = name[0]
+if ( 6 <= len(name) <= 20) and rea.isalpha():
+    print("登陆成功")
+else:
+    print("密码不对")
+
+
+#名片升级1.0
+name = input("请输入姓名")
+sex = input("请输入性别")
+photo = input("请输入手机号")
+
+if ( 6 <= len(name) <= 20):
+    print("erro1")
+if(photo != 11):
+    print("erro2")
+if( sex != "男" or sex != "女"):
+    print("erro3")
+print("姓名%s " % name)
+print("性别%s" % sex)
+print("电话 %s" % photo )
