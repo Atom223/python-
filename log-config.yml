@@ -1,0 +1,32 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  default:
+    (): "uvicorn.logging.DefaultFormatter"
+    fmt: "%(levelprefix)s %(asctime)s - %(name)s - [%(filename)s:%(lineno)d] - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: default
+    stream: ext://sys.stdout
+
+# 日志记录器
+loggers:
+  MetaIgnite_backend:
+    level: DEBUG          # 您应用的代码日志级别
+    handlers: [console]
+    propagate: no         # 防止日志向上传递
+
+  # uvicorn.error logger ，以便看到启动错误
+  uvicorn.error:
+    level: INFO
+    handlers: [console]
+    propagate: no
+
+# Root logger
+root:
+  level: INFO
+  handlers: [console]
