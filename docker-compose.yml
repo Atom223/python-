@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  metaignite-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: metaignite-backend
+    ports:
+      - "8001:8001"
+    environment:
+      # 基础配置
+      - DEBUG=False
+      - APP_ENV=production
+      - HOST=0.0.0.0
+      - PORT=8001
+      
+      # 数据库配置（SQLite，适合离线环境）
+      - DATABASE_URL=sqlite:///./data/metaignite.db
+      
+      # JWT配置
+      - JWT_SECRET_KEY=your-super-secret-jwt-key-change-in-production
+      - JWT_ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      
+      # OAuth配置（离线环境可能无法使用）
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID:-}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET:-}
+      
+      # AI服务配置（离线环境可能无法使用）
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - TAVILY_API_KEY=${TAVILY_API_KEY:-}
+      
+      # 日志配置
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=json
+    
+    volumes:
+      # 数据持久化
+      - ./data:/app/data
+      # 日志持久化
+      - ./logs:/app/logs
+      # 配置文件挂载（如果需要运行时修改）
+      - ./conf.yaml:/app/conf.yaml:ro
+    
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # 重启策略
+    restart: unless-stopped
+    
+    # 网络配置
+    networks:
+      - metaignite-network
+    
+    # 资源限制（可选）
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # 可选：添加数据库服务（如果需要PostgreSQL）
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: metaignite-postgres
+  #   environment:
+  #     - POSTGRES_DB=metaignite
+  #     - POSTGRES_USER=metaignite
+  #     - POSTGRES_PASSWORD=your-secure-password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - metaignite-network
+  #   restart: unless-stopped
+
+  # 可选：添加Redis服务（如果需要缓存）
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: metaignite-redis
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - metaignite-network
+  #   restart: unless-stopped
+
+networks:
+  metaignite-network:
+    driver: bridge
+
+volumes:
+  # postgres_data:
+  # redis_data:
+  metaignite_data:
+    driver: local
+  metaignite_logs:
+    driver: local

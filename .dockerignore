@@ -1,0 +1,116 @@
+# Git相关文件
+.git
+.gitignore
+.git/
+
+# Python缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+PYTHONPATH
+
+# 虚拟环境
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# 测试和覆盖率文件
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# 开发和测试文件
+test_*.py
+*_test.py
+tests/
+oauth_test_summary.md
+
+# 文档和说明文件（保留重要的部署文档）
+# README.md - 保留
+# DEPLOYMENT.md - 保留
+# GITHUB_UPLOAD_GUIDE.md - 保留
+examples/
+
+# Trae相关文件
+.trae/
+
+# 环境配置文件（使用示例文件）
+.env
+conf.yaml
+
+# Node.js相关（如果存在）
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 其他
+*.pid
+*.seed
+*.pid.lock
+.nyc_output
+
+# Docker相关
+.dockerignore
+Dockerfile.dev
+docker-compose.override.yml
+
+# 备份文件
+*.bak
+*.backup
+*.old
+
+# 系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
